@@ -14,6 +14,8 @@
 		D5AE23762A3D5879002C34B1 /* Fetch_TakeHomeProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AE23752A3D5879002C34B1 /* Fetch_TakeHomeProjectTests.swift */; };
 		D5AE23802A3D5879002C34B1 /* Fetch_TakeHomeProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AE237F2A3D5879002C34B1 /* Fetch_TakeHomeProjectUITests.swift */; };
 		D5AE23822A3D5879002C34B1 /* Fetch_TakeHomeProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AE23812A3D5879002C34B1 /* Fetch_TakeHomeProjectUITestsLaunchTests.swift */; };
+		D5AE238F2A3D5B48002C34B1 /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AE238E2A3D5B48002C34B1 /* Networking.swift */; };
+		D5AE23912A3D6046002C34B1 /* DessertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AE23902A3D6046002C34B1 /* DessertViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		D5AE237B2A3D5879002C34B1 /* Fetch_TakeHomeProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Fetch_TakeHomeProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5AE237F2A3D5879002C34B1 /* Fetch_TakeHomeProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetch_TakeHomeProjectUITests.swift; sourceTree = "<group>"; };
 		D5AE23812A3D5879002C34B1 /* Fetch_TakeHomeProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetch_TakeHomeProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D5AE238E2A3D5B48002C34B1 /* Networking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Networking.swift; sourceTree = "<group>"; };
+		D5AE23902A3D6046002C34B1 /* DessertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,8 @@
 			children = (
 				D5AE23642A3D5878002C34B1 /* Fetch_TakeHomeProjectApp.swift */,
 				D5AE23662A3D5878002C34B1 /* ContentView.swift */,
+				D5AE23902A3D6046002C34B1 /* DessertViewModel.swift */,
+				D5AE238E2A3D5B48002C34B1 /* Networking.swift */,
 				D5AE23682A3D5879002C34B1 /* Assets.xcassets */,
 				D5AE236A2A3D5879002C34B1 /* Preview Content */,
 			);
@@ -257,8 +263,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5AE238F2A3D5B48002C34B1 /* Networking.swift in Sources */,
 				D5AE23672A3D5878002C34B1 /* ContentView.swift in Sources */,
 				D5AE23652A3D5878002C34B1 /* Fetch_TakeHomeProjectApp.swift in Sources */,
+				D5AE23912A3D6046002C34B1 /* DessertViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
