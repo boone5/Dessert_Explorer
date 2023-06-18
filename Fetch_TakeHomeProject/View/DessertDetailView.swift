@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct DessertDetailView: View {
-    @ObservedObject var dessertDetailViewModel: DessertDetailViewModel
+    @StateObject var dessertDetailViewModel = DessertDetailViewModel()
 
     public var id: String?
     public var dessert: Dessert? {
@@ -16,28 +16,32 @@ struct DessertDetailView: View {
     }
 
     var body: some View {
-        ScrollView(.vertical) {
-            VStack(alignment: .leading, spacing: 10) {
-                Text(dessert?.name ?? "uh oh")
+        if dessertDetailViewModel.isLoaded {
+            ScrollView(.vertical) {
+                VStack(alignment: .leading, spacing: 10) {
+                    Text(dessert?.instructions ?? "Dessert Instructions Not Available.")
 
-                Text(dessert?.instructions ?? "uh oh")
-
-                if let ingredients = dessert?.ingredients {
-                    ForEach(ingredients) { ingredient in
-                        HStack {
-                            Text(ingredient.ingredientName)
-                            Text(ingredient.measurement)
+                    if let ingredients = dessert?.ingredients {
+                        ForEach(ingredients) { ingredient in
+                            HStack {
+                                Text(ingredient.ingredientName)
+                                Text(ingredient.measurement)
+                            }
                         }
+                    } else {
+                        Text("Dessert Ingredients Not Available.")
                     }
-                } else {
-                    Text("uh oh")
                 }
             }
+            .navigationTitle(dessert?.name ?? "Dessert Title Not Available.")
+        } else {
+            ProgressView()
+                .progressViewStyle(.circular)
+                .frame(alignment: .center)
+                .task {
+                    await dessertDetailViewModel.loadData(.getRecipeByID(self.id))
+                }
         }
-        .task {
-            await dessertDetailViewModel.loadData(.getRecipeByID(self.id))
-        }
-        .navigationTitle("")
     }
 }
 

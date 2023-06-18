@@ -9,13 +9,12 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var dessertViewModel = DessertViewModel()
-    @StateObject var dessertDetailViewModel = DessertDetailViewModel()
 
     var body: some View {
         NavigationView {
             List(dessertViewModel.desserts) { dessert in
                 NavigationLink(
-                    destination: DessertDetailView(dessertDetailViewModel: dessertDetailViewModel, id: dessert.id)
+                    destination: DessertDetailView(id: dessert.id)
                 ) {
                     self.dessertItemView(dessert: dessert)
                 }

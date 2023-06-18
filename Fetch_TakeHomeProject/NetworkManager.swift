@@ -95,8 +95,8 @@ struct Dessert: Identifiable {
     var ingredients: [IngredientWithMeasurement]?
 
     init(
-        id: String?,
-        name: String?,
+        id: String? = nil,
+        name: String? = nil,
         thumbnailImage: UIImage? = nil,
         instructions: String? = nil,
         ingredients: [IngredientWithMeasurement]? = []

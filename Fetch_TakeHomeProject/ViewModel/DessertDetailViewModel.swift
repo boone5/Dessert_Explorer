@@ -11,15 +11,18 @@ import SwiftUI
 class DessertDetailViewModel: ObservableObject {
     private let networkManager = NetworkManager()
 
-    @Published var details: Dessert? = nil
+    @Published var details: Dessert?
+    @Published var isLoaded: Bool = false
 
     public func loadData(_ endpoint: APIEndpoint) async {
         do {
-
             let desserts = try await networkManager.request(endpoint: endpoint)
+
             self.details = desserts.first
+            self.isLoaded = true
 
         } catch {
+            self.isLoaded = false
             // MARK: Todo
             // - Custom Errors
             // - Logs
