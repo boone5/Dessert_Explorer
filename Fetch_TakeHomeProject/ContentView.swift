@@ -9,46 +9,41 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var dessertViewModel = DessertViewModel()
+    @StateObject var dessertDetailViewModel = DessertDetailViewModel()
 
     var body: some View {
         NavigationView {
-            ScrollView(.vertical) {
-                VStack(alignment: .leading, spacing: 20) {
-                    self.dessertItemView()
+            List(dessertViewModel.desserts) { dessert in
+                NavigationLink(
+                    destination: DessertDetailView(dessertDetailViewModel: dessertDetailViewModel, id: dessert.id)
+                ) {
+                    self.dessertItemView(dessert: dessert)
                 }
-                .padding(.leading, 20)
-                .padding(.top, 10)
             }
+            .listStyle(.inset)
             .navigationTitle("Desserts")
         }
         .task {
-            await dessertViewModel.fetch()
+            await dessertViewModel.loadData(.getDesserts)
         }
     }
 }
 
 extension ContentView {
-    func dessertItemView() -> some View {
-        ForEach(dessertViewModel.meals, id: \.id) { meal in
-            HStack {
-                if let thumbnailImage = meal.thumbnailImage {
-                    Image(uiImage: thumbnailImage)
-                        .resizable()
-                        .frame(width: 150, height: 150)
-                        .aspectRatio(contentMode: .fit)
-                        .cornerRadius(8)
-                }
-
-                Text(meal.name ?? "")
-                    .font(.title3)
-                    .multilineTextAlignment(.leading)
-                    .padding(.leading, 10)
-
-                Spacer()
-
-                Image(systemName: "chevron.right")
-                    .padding(.trailing, 20)
+    func dessertItemView(dessert: Dessert) -> some View {
+        HStack {
+            if let thumbnailImage = dessert.thumbnailImage {
+                Image(uiImage: thumbnailImage)
+                    .resizable()
+                    .frame(width: 100, height: 100)
+                    .aspectRatio(contentMode: .fit)
+                    .cornerRadius(8)
             }
+
+            Text(dessert.name ?? "")
+                .font(.title3)
+                .multilineTextAlignment(.leading)
+                .padding(.leading, 10)
         }
     }
 }
