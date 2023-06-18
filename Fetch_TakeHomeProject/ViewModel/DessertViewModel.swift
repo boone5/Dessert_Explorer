@@ -15,17 +15,8 @@ class DessertViewModel: ObservableObject {
 
     public func loadData(_ endpoint: APIEndpoint) async {
         do {
-            let jsonDict = try await networkManager.request(endpoint: endpoint)
+            self.desserts = try await networkManager.request(endpoint: endpoint)
 
-            for key in jsonDict {
-                let dessert = Dessert(
-                    id: key["idMeal"] as? String,
-                    name: key["strMeal"] as? String,
-                    thumbnail: key["strMealThumb"] as? URL
-                )
-
-                self.desserts.append(dessert)
-            }
         } catch {
             // MARK: Todo
             // - Custom Errors

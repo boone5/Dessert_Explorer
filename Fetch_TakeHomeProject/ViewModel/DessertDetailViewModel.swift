@@ -15,32 +15,9 @@ class DessertDetailViewModel: ObservableObject {
 
     public func loadData(_ endpoint: APIEndpoint) async {
         do {
-            let jsonDict = try await networkManager.request(endpoint: endpoint)
-            var hasMoreIngredients = true
 
-            for key in jsonDict {
-                var dessert = Dessert(
-                    id: key["idMeal"] as? String,
-                    name: key["strMeal"] as? String,
-                    thumbnail: key["strMealThumb"] as? URL,
-                    instructions: key["strInstructions"] as? String
-                )
-
-                var index = 1
-                while hasMoreIngredients {
-                    if
-                        let ingredientName = key["strIngredient\(index)"] as? String,
-                        let measurement = key["strMeasure\(index)"] as? String
-                    {
-                        dessert.ingredients?.append(IngredientWithMeasurement(ingredientName: ingredientName, measurement: measurement))
-                        index += 1
-                    } else {
-                        hasMoreIngredients = false
-                    }
-                }
-
-                self.details = dessert
-            }
+            let desserts = try await networkManager.request(endpoint: endpoint)
+            self.details = desserts.first
 
         } catch {
             // MARK: Todo
