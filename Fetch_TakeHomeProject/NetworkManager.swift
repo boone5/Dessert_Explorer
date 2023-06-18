@@ -109,7 +109,8 @@ struct Dessert: Identifiable {
     }
 }
 
-struct IngredientWithMeasurement {
+struct IngredientWithMeasurement: Identifiable {
+    let id = UUID()
     let ingredientName: String
     let measurement: String
 }
