@@ -86,7 +86,7 @@ class NetworkHelper {
 
         let id = json["idMeal"] as? String
         let name = json["strMeal"] as? String
-        let instructions = json["strInstructions"] as? String
+        let instructions = formatJSON(jsonString: json["strInstructions"] as? String)
 
         var dessert = Dessert(
             id: id,
@@ -113,5 +113,13 @@ class NetworkHelper {
             dessert.ingredients?.append(Ingredient(name: name, measurement: measurement))
             index += 1
         }
+    }
+
+    private static func formatJSON(jsonString: String?) -> String? {
+        guard let json = jsonString else { return nil }
+
+        let replaced = json.replacingOccurrences(of: "\r\n", with: "")
+
+        return replaced
     }
 }
