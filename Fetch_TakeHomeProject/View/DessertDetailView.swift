@@ -8,45 +8,50 @@
 import SwiftUI
 
 struct DessertDetailView: View {
-    @StateObject var dessertDetailViewModel = DessertDetailViewModel()
+    @StateObject var dessertDetailViewModel = DessertDetailViewModel(details: Dessert())
 
     public var id: String?
-    public var dessert: Dessert? {
+    public var navigationTitle: String?
+    public var details: Dessert? {
         dessertDetailViewModel.details
     }
 
     var body: some View {
-        if dessertDetailViewModel.isLoaded {
-            ScrollView(.vertical) {
-                VStack(alignment: .leading, spacing: 10) {
-                    Text(dessert?.instructions ?? "Dessert Instructions Not Available.")
+        ZStack {
+            if dessertDetailViewModel.isLoaded {
+                ScrollView(.vertical) {
+                    VStack(alignment: .leading, spacing: 10) {
+                        Text(details?.instructions ?? "")
 
-                    if let ingredients = dessert?.ingredients {
-                        ForEach(ingredients) { ingredient in
-                            HStack {
-                                Text(ingredient.ingredientName)
-                                Text(ingredient.measurement)
+                        if let ingredients = details?.ingredients {
+                            ForEach(ingredients) { ingredient in
+                                HStack {
+                                    Text(ingredient.name)
+                                    Text(ingredient.measurement)
+                                }
                             }
+                        } else {
+                            Text("Dessert Ingredients Not Available.")
                         }
-                    } else {
-                        Text("Dessert Ingredients Not Available.")
                     }
                 }
+            } else {
+                ProgressView()
+                    .progressViewStyle(.circular)
+                    .frame(alignment: .center)
+                    .task {
+                        await dessertDetailViewModel.fetchDessertByID(self.id)
+                    }
             }
-            .navigationTitle(dessert?.name ?? "Dessert Title Not Available.")
-        } else {
-            ProgressView()
-                .progressViewStyle(.circular)
-                .frame(alignment: .center)
-                .task {
-                    await dessertDetailViewModel.loadData(.getRecipeByID(self.id))
-                }
         }
+        .navigationTitle(navigationTitle ?? "Dessert Title Not Available.")
     }
 }
 
+#if DEBUG
 struct DessertDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DessertDetailView(dessertDetailViewModel: DessertDetailViewModel())
+        DessertDetailView(dessertDetailViewModel: DessertDetailViewModel(details: Dessert()))
     }
 }
+#endif

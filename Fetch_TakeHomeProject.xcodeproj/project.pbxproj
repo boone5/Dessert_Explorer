@@ -19,6 +19,10 @@
 		D5E7587F2A3E76E0008905B8 /* DessertDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7587E2A3E76E0008905B8 /* DessertDetailView.swift */; };
 		D5E758832A3ED61F008905B8 /* DessertDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E758822A3ED61F008905B8 /* DessertDetailViewModel.swift */; };
 		D5E758852A3EDB9F008905B8 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E758842A3EDB9F008905B8 /* APIEndpoint.swift */; };
+		D5E7588B2A3FCEC1008905B8 /* ImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7588A2A3FCEC1008905B8 /* ImageManager.swift */; };
+		D5E7588D2A3FD3A8008905B8 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7588C2A3FD3A8008905B8 /* NetworkHelper.swift */; };
+		D5E7588F2A3FF03D008905B8 /* Dessert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7588E2A3FF03D008905B8 /* Dessert.swift */; };
+		D5E758912A3FF0B4008905B8 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E758902A3FF0B4008905B8 /* Ingredient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +58,10 @@
 		D5E7587E2A3E76E0008905B8 /* DessertDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertDetailView.swift; sourceTree = "<group>"; };
 		D5E758822A3ED61F008905B8 /* DessertDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertDetailViewModel.swift; sourceTree = "<group>"; };
 		D5E758842A3EDB9F008905B8 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
+		D5E7588A2A3FCEC1008905B8 /* ImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageManager.swift; sourceTree = "<group>"; };
+		D5E7588C2A3FD3A8008905B8 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
+		D5E7588E2A3FF03D008905B8 /* Dessert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dessert.swift; sourceTree = "<group>"; };
+		D5E758902A3FF0B4008905B8 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +116,10 @@
 				D5AE23662A3D5878002C34B1 /* ContentView.swift */,
 				D5E758802A3E76F1008905B8 /* View */,
 				D5E758812A3E7706008905B8 /* ViewModel */,
+				D5E758922A3FF179008905B8 /* Model */,
 				D5AE238E2A3D5B48002C34B1 /* NetworkManager.swift */,
+				D5E7588C2A3FD3A8008905B8 /* NetworkHelper.swift */,
+				D5E7588A2A3FCEC1008905B8 /* ImageManager.swift */,
 				D5E758842A3EDB9F008905B8 /* APIEndpoint.swift */,
 				D5AE23682A3D5879002C34B1 /* Assets.xcassets */,
 				D5AE236A2A3D5879002C34B1 /* Preview Content */,
@@ -156,6 +167,15 @@
 				D5E758822A3ED61F008905B8 /* DessertDetailViewModel.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		D5E758922A3FF179008905B8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D5E7588E2A3FF03D008905B8 /* Dessert.swift */,
+				D5E758902A3FF0B4008905B8 /* Ingredient.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -288,9 +308,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D5E7588F2A3FF03D008905B8 /* Dessert.swift in Sources */,
 				D5E758852A3EDB9F008905B8 /* APIEndpoint.swift in Sources */,
 				D5AE238F2A3D5B48002C34B1 /* NetworkManager.swift in Sources */,
 				D5AE23672A3D5878002C34B1 /* ContentView.swift in Sources */,
+				D5E7588B2A3FCEC1008905B8 /* ImageManager.swift in Sources */,
+				D5E758912A3FF0B4008905B8 /* Ingredient.swift in Sources */,
+				D5E7588D2A3FD3A8008905B8 /* NetworkHelper.swift in Sources */,
 				D5E758832A3ED61F008905B8 /* DessertDetailViewModel.swift in Sources */,
 				D5E7587F2A3E76E0008905B8 /* DessertDetailView.swift in Sources */,
 				D5AE23652A3D5878002C34B1 /* Fetch_TakeHomeProjectApp.swift in Sources */,

@@ -9,6 +9,11 @@ import SwiftUI
 
 @main
 struct Fetch_TakeHomeProjectApp: App {
+    init() {
+        // This adds resizing so NavigationBar title's fit on screen
+        UILabel.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).adjustsFontSizeToFitWidth = true
+    }
+
     var body: some Scene {
         WindowGroup {
             ContentView()

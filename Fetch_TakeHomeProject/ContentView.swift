@@ -14,7 +14,7 @@ struct ContentView: View {
         NavigationView {
             List(dessertViewModel.desserts) { dessert in
                 NavigationLink(
-                    destination: DessertDetailView(id: dessert.id)
+                    destination: DessertDetailView(id: dessert.id, navigationTitle: dessert.name)
                 ) {
                     self.dessertItemView(dessert: dessert)
                 }
@@ -23,7 +23,7 @@ struct ContentView: View {
             .navigationTitle("Desserts")
         }
         .task {
-            await dessertViewModel.loadData(.getDesserts)
+            await dessertViewModel.fetchDesserts()
         }
     }
 }

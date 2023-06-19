@@ -9,24 +9,17 @@ import SwiftUI
 
 @MainActor
 class DessertDetailViewModel: ObservableObject {
-    private let networkManager = NetworkManager()
+    @Published var details: Dessert
+    @Published var isLoaded: Bool
 
-    @Published var details: Dessert?
-    @Published var isLoaded: Bool = false
+    init(details: Dessert, isLoaded: Bool = false) {
+        self.details = details
+        self.isLoaded = isLoaded
+    }
 
-    public func loadData(_ endpoint: APIEndpoint) async {
-        do {
-            let desserts = try await networkManager.request(endpoint: endpoint)
+    public func fetchDessertByID(_ id: String?) async {
+        self.details = await NetworkHelper.loadDessert(by: id)
 
-            self.details = desserts.first
-            self.isLoaded = true
-
-        } catch {
-            self.isLoaded = false
-            // MARK: Todo
-            // - Custom Errors
-            // - Logs
-            print(error)
-        }
+        self.isLoaded = true
     }
 }
