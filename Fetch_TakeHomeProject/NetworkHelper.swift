@@ -115,6 +115,9 @@ class NetworkHelper {
         }
     }
 
+    /// The API returns `instructions` with newline characters that aren't consistent across each dessert. This function removes them altogether to make for a more consistent user expereince.
+    ///
+    /// Without removing the newline characters, one dessert object might return `instructions` with paragraph spacing while another doesn't. 
     private static func formatJSON(jsonString: String?) -> String? {
         guard let json = jsonString else { return nil }
 
