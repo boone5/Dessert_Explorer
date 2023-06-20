@@ -11,27 +11,44 @@ class NetworkManager {
     static let shared = NetworkManager()
 
     // MARK: MAKE API REQUEST
-    func makeRequest(endpoint: APIEndpoint) async throws -> [String: Any] {
+    func makeRequest(endpoint: APIEndpoint) async throws -> Result<Data, APIError> {
         guard let url = URL(string: endpoint.path) else {
             // MARK: ERROR
-            throw URLError(.badURL)
+            throw APIError.badURL
         }
 
-        let (data, _) = try await URLSession.shared.data(from: url)
-
         do {
-            let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            let (data, _) = try await URLSession.shared.data(from: url)
 
-            guard let responseJSON = jsonObject else {
-                throw URLError(.badServerResponse)
-            }
-
-            return responseJSON
+            return .success(data)
 
         // MARK: ERROR
         } catch(let error) {
-            print("😡 " + error.localizedDescription)
-            throw error
+            if let urlError = error as? URLError, urlError.code == .notConnectedToInternet {
+                throw APIError.networkUnavailable
+            } else {
+                throw APIError.unknownError(error)
+            }
+        }
+    }
+}
+
+enum APIError: Error {
+    case networkUnavailable
+    case invalidFormat
+    case unknownError(Error)
+    case decodingError(Error)
+    case encodingError
+    case badURL
+
+    var description: String {
+        switch self {
+        case .networkUnavailable:
+            return "No internet connection."
+        case .unknownError(_):
+            return "Something went wrong"
+        case .decodingError(_), .encodingError, .invalidFormat, .badURL:
+            return "Invalid server response"
         }
     }
 }

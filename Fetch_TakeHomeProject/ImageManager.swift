@@ -14,7 +14,7 @@ class ImageManager {
             let url = URL(string: str)
         else {
             // MARK: ERROR
-            throw URLError(.badURL)
+            throw APIError.badURL
         }
 
         let (data, _) = try await URLSession.shared.data(from: url)
