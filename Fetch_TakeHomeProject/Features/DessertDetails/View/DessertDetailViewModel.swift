@@ -7,25 +7,27 @@
 
 import Foundation
 
-@MainActor
 class DessertDetailViewModel: ObservableObject {
-    private let networkManager = NetworkManager()
+    private let networkManager: NetworkManager
 
     @Published var details: Dessert
     @Published var isLoaded: Bool
 
-    init(details: Dessert, isLoaded: Bool = false) {
+    init(details: Dessert, isLoaded: Bool = false, networkManager: NetworkManager = NetworkManager()) {
         self.details = details
         self.isLoaded = isLoaded
+        self.networkManager = networkManager
     }
 
+    @MainActor
     /// Make a network request to load a Dessert object. Function handles errors respectively.
     public func loadDessert(_ id: String) async {
         do {
             let data = try await networkManager.fetchEndpoint(.getDessertByID(id))
 
-            try await createDessert(from: data)
+            let dessertDetails = try await createDessert(from: data)
 
+            self.details = dessertDetails
             self.isLoaded = true
 
         } catch(let error) {
@@ -38,7 +40,7 @@ class DessertDetailViewModel: ObservableObject {
         }
     }
 
-    private func createDessert(from data: Data) async throws {
+    private func createDessert(from data: Data) async throws -> Dessert {
         let jsonArray = try NetworkHelper.convertToJSON(from: data)
 
         // The API returns an array of length 1 with our specified Dessert object. We need this line to access the first element.
@@ -58,7 +60,7 @@ class DessertDetailViewModel: ObservableObject {
 
         NetworkHelper.addProperties(to: &dessert, with: json)
 
-        self.details = dessert
+        return dessert
     }
 
     /// The API returns `instructions` with newline characters that aren't consistent across each dessert object. This function removes them altogether to make for a more consistent user expereince.

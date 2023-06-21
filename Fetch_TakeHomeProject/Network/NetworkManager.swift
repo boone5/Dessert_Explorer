@@ -7,8 +7,12 @@
 
 import Foundation.NSData
 
-struct NetworkManager {
-    private let server = Server()
+class NetworkManager {
+    private let server: Server
+
+    init(server: Server = Server()) {
+        self.server = server
+    }
 
     /// Notifies the Server to make a request using the endpoint.
     func fetchEndpoint(_ endpoint: APIEndpoint) async throws -> Data {

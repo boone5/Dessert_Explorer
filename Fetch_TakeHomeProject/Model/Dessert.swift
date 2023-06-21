@@ -5,7 +5,7 @@
 //  Created by Boone on 6/18/23.
 //
 
-struct Dessert: Identifiable {
+struct Dessert: Identifiable, Equatable {
     let id: String?
     let name: String?
     var thumbnailImage: String?
@@ -27,5 +27,14 @@ struct Dessert: Identifiable {
         self.instructions = instructions
         self.ingredients = ingredients
         self.measurements = measurements
+    }
+
+    static func == (lhs: Dessert, rhs: Dessert) -> Bool {
+        return lhs.id == rhs.id &&
+        lhs.name == rhs.name &&
+        lhs.thumbnailImage == rhs.thumbnailImage &&
+        lhs.instructions == rhs.instructions &&
+        lhs.ingredients == rhs.ingredients &&
+        lhs.measurements == rhs.measurements
     }
 }

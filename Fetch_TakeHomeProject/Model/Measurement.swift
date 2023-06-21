@@ -7,7 +7,7 @@
 
 import Foundation.NSUUID
 
-struct Measurement: Identifiable {
+struct Measurement: Identifiable, Equatable {
     let id = UUID()
     let name: String
 }

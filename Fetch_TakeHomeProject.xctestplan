@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "5BA5462F-7279-46FA-A52E-44154928B4C4",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Fetch_TakeHomeProject.xcodeproj",
+      "identifier" : "D5AE23602A3D5878002C34B1",
+      "name" : "Fetch_TakeHomeProject"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Fetch_TakeHomeProject.xcodeproj",
+        "identifier" : "D5AE23702A3D5879002C34B1",
+        "name" : "Fetch_TakeHomeProjectTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Fetch_TakeHomeProject.xcodeproj",
+        "identifier" : "D5AE237A2A3D5879002C34B1",
+        "name" : "Fetch_TakeHomeProjectUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

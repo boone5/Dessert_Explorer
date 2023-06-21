@@ -6,7 +6,7 @@
 //
 import Foundation.NSUUID
 
-struct Ingredient: Identifiable {
+struct Ingredient: Identifiable, Equatable {
     let id = UUID()
     let name: String
 }
