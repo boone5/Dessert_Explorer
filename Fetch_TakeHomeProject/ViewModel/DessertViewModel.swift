@@ -9,6 +9,7 @@ import SwiftUI
 
 @MainActor
 class DessertViewModel: ObservableObject {
+    private let imageRetriever = ImageManager()
 
     @Published var desserts: [Dessert]
     @Published var isLoaded: Bool
@@ -19,8 +20,6 @@ class DessertViewModel: ObservableObject {
     }
 
     public func createDessertList() async {
-        var list: [Dessert] = []
-
         do {
             let jsonArray = try await NetworkHelper.fetchEndpoint(.getAllDesserts)
 
@@ -31,21 +30,20 @@ class DessertViewModel: ObservableObject {
 
                 // Load the image from endpoint in "strMealThumb".
                 // - Implementing a cache wasn't as trivial as I thought it would be
-                let image = try await ImageManager.fetchImage(from: urlString)
+//                let image = try await imageRetriever.fetchImage(from: urlString)
 
                 let dessert = Dessert(
                     id: id,
                     name: name,
-                    thumbnailImage: image
+                    thumbnailImage: urlString
                 )
 
-                list.append(dessert)
+                desserts.append(dessert)
             }
         } catch (let error) {
             print("😡 \(error)")
         }
 
-        self.desserts = sortAlphabetically(list: list)
         self.isLoaded = true
     }
 

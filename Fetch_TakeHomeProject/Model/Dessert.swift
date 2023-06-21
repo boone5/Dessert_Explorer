@@ -10,7 +10,7 @@ import UIKit
 struct Dessert: Identifiable {
     let id: String?
     let name: String?
-    var thumbnailImage: UIImage?
+    var thumbnailImage: String?
     var instructions: String?
     var ingredients: [Ingredient]?
     var measurements: [Measurement]?
@@ -18,7 +18,7 @@ struct Dessert: Identifiable {
     init(
         id: String? = nil,
         name: String? = nil,
-        thumbnailImage: UIImage? = nil,
+        thumbnailImage: String? = nil,
         instructions: String? = nil,
         ingredients: [Ingredient]? = [],
         measurements: [Measurement]? = []

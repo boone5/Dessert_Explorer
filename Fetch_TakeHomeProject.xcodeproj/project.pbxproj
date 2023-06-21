@@ -24,6 +24,9 @@
 		D5E7588D2A3FD3A8008905B8 /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7588C2A3FD3A8008905B8 /* NetworkHelper.swift */; };
 		D5E7588F2A3FF03D008905B8 /* Dessert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7588E2A3FF03D008905B8 /* Dessert.swift */; };
 		D5E758912A3FF0B4008905B8 /* Ingredient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E758902A3FF0B4008905B8 /* Ingredient.swift */; };
+		D5E760C72A41DF310047C8C4 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E760C62A41DF310047C8C4 /* ImageCache.swift */; };
+		D5E760C92A41E8D60047C8C4 /* CachedImageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E760C82A41E8D60047C8C4 /* CachedImageManager.swift */; };
+		D5E760CB2A41E9030047C8C4 /* CachedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E760CA2A41E9030047C8C4 /* CachedImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +67,9 @@
 		D5E7588C2A3FD3A8008905B8 /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
 		D5E7588E2A3FF03D008905B8 /* Dessert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dessert.swift; sourceTree = "<group>"; };
 		D5E758902A3FF0B4008905B8 /* Ingredient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ingredient.swift; sourceTree = "<group>"; };
+		D5E760C62A41DF310047C8C4 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		D5E760C82A41E8D60047C8C4 /* CachedImageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImageManager.swift; sourceTree = "<group>"; };
+		D5E760CA2A41E9030047C8C4 /* CachedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,7 +126,7 @@
 				D5E758922A3FF179008905B8 /* Model */,
 				D5AE238E2A3D5B48002C34B1 /* NetworkManager.swift */,
 				D5E7588C2A3FD3A8008905B8 /* NetworkHelper.swift */,
-				D5E7588A2A3FCEC1008905B8 /* ImageManager.swift */,
+				D5E760C52A41DF230047C8C4 /* Cached */,
 				D5E758842A3EDB9F008905B8 /* APIEndpoint.swift */,
 				D5AE23682A3D5879002C34B1 /* Assets.xcassets */,
 				D5AE236A2A3D5879002C34B1 /* Preview Content */,
@@ -179,6 +185,17 @@
 				D54779122A4159E0005A9F9F /* Measurement.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		D5E760C52A41DF230047C8C4 /* Cached */ = {
+			isa = PBXGroup;
+			children = (
+				D5E7588A2A3FCEC1008905B8 /* ImageManager.swift */,
+				D5E760C62A41DF310047C8C4 /* ImageCache.swift */,
+				D5E760C82A41E8D60047C8C4 /* CachedImageManager.swift */,
+				D5E760CA2A41E9030047C8C4 /* CachedImage.swift */,
+			);
+			path = Cached;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,6 +329,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5E7588F2A3FF03D008905B8 /* Dessert.swift in Sources */,
+				D5E760C72A41DF310047C8C4 /* ImageCache.swift in Sources */,
 				D5E758852A3EDB9F008905B8 /* APIEndpoint.swift in Sources */,
 				D54779132A4159E0005A9F9F /* Measurement.swift in Sources */,
 				D5AE238F2A3D5B48002C34B1 /* NetworkManager.swift in Sources */,
@@ -321,8 +339,10 @@
 				D5E7588D2A3FD3A8008905B8 /* NetworkHelper.swift in Sources */,
 				D5E758832A3ED61F008905B8 /* DessertDetailViewModel.swift in Sources */,
 				D5E7587F2A3E76E0008905B8 /* DessertDetailView.swift in Sources */,
+				D5E760CB2A41E9030047C8C4 /* CachedImage.swift in Sources */,
 				D5AE23652A3D5878002C34B1 /* Fetch_TakeHomeProjectApp.swift in Sources */,
 				D5AE23912A3D6046002C34B1 /* DessertViewModel.swift in Sources */,
+				D5E760C92A41E8D60047C8C4 /* CachedImageManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

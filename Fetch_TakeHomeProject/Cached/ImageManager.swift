@@ -8,7 +8,7 @@
 import UIKit
 
 class ImageManager {
-    static func fetchImage(from str: String?) async throws -> UIImage {
+    func fetchImage(from str: String?) async throws -> UIImage {
         guard
             let str = str,
             let url = URL(string: str)
@@ -25,5 +25,19 @@ class ImageManager {
         }
 
         return image
+    }
+
+    func fetch(from str: String?) async throws -> Data {
+        guard
+            let str = str,
+            let url = URL(string: str)
+        else {
+            // MARK: ERROR
+            throw APIError.badURL
+        }
+
+        let (data, _) = try await URLSession.shared.data(from: url)
+
+        return data
     }
 }

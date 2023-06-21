@@ -12,51 +12,51 @@ struct DessertListView: View {
 
     var body: some View {
         NavigationView {
-            ZStack {
-                if dessertViewModel.isLoaded {
-                    List(dessertViewModel.desserts) { dessert in
-                        NavigationLink(
-                            destination: DessertDetailView(id: dessert.id, navigationTitle: dessert.name)
-                        ) {
-                            self.dessertItemView(dessert: dessert)
+            if dessertViewModel.isLoaded {
+                ScrollView(.vertical) {
+                    VStack(alignment: .leading, spacing: 15) {
+                        ForEach(dessertViewModel.desserts) { dessert in
+                            NavigationLink(destination: DessertDetailView(id: dessert.id, navigationTitle: dessert.name)) {
+                                ZStack(alignment: .leading) {
+                                    Rectangle()
+                                        .foregroundColor(.white)
+                                        .cornerRadius(20)
+                                        .shadow(radius: 2, y: 2)
+
+                                    HStack(alignment: .center) {
+                                        CachedImage(url: dessert.thumbnailImage ?? "")
+
+                                        Text(dessert.name ?? "")
+                                            .font(.title2.weight(.bold))
+                                            .multilineTextAlignment(.leading)
+                                            .foregroundColor(.black)
+                                            .padding(.leading, 20)
+                                    }
+                                    .padding()
+                                }
+                                .padding(.leading, 20)
+                                .padding(.trailing, 20)
+                            }
                         }
                     }
-                    .listStyle(.inset)
-                } else {
-                    ProgressView()
-                        .progressViewStyle(.circular)
-                        .frame(alignment: .center)
+                    .padding(.top, 10)
                 }
+                .navigationTitle("Desserts")
+
+            } else {
+                ProgressView()
+                    .progressViewStyle(.circular)
+                    .frame(alignment: .center)
             }
-            .navigationTitle("Desserts")
-            .task {
-                await dessertViewModel.createDessertList()
-            }
+        }
+        .task {
+            await dessertViewModel.createDessertList()
         }
     }
 }
 
-extension DessertListView {
-    func dessertItemView(dessert: Dessert) -> some View {
-        HStack {
-            if let thumbnailImage = dessert.thumbnailImage {
-                Image(uiImage: thumbnailImage)
-                    .resizable()
-                    .frame(width: 100, height: 100)
-                    .aspectRatio(contentMode: .fit)
-                    .cornerRadius(8)
-            }
-
-            Text(dessert.name ?? "")
-                .font(.title3)
-                .multilineTextAlignment(.leading)
-                .padding(.leading, 10)
-        }
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        DessertListView(dessertViewModel: DessertViewModel(desserts: []))
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        DessertListView(dessertViewModel: DessertViewModel(desserts: []))
+//    }
+//}
