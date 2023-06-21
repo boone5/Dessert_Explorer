@@ -18,8 +18,8 @@ class NetworkHelperTests: XCTestCase {
     }
 
     override func tearDown() {
-        networkHelper = nil
         super.tearDown()
+        networkHelper = nil
     }
 
     func testConvertToJSON_ShouldReturnArrayOfJSONObjects() {

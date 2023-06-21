@@ -14,13 +14,16 @@ final class DessertDetailViewModelTests: XCTestCase {
     private var mockNetworkManager: MockNetworkManager!
 
     override func setUp() {
+        super.setUp()
         self.mockNetworkManager = MockNetworkManager()
         let dessert = Dessert()
         self.viewModel = DessertDetailViewModel(details: dessert, networkManager: mockNetworkManager)
     }
 
     override func tearDown() {
+        super.tearDown()
         self.viewModel = nil
+        self.mockNetworkManager = nil
     }
 
     func testCreateDessert() async {

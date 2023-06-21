@@ -18,8 +18,8 @@ class ServerTests: XCTestCase {
     }
 
     override func tearDown() {
-        server = nil
         super.tearDown()
+        server = nil
     }
 
     func testMakeRequest_ShouldReturnData_GetAllDesserts() async {
