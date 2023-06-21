@@ -22,18 +22,13 @@ struct DessertDetailView: View {
                 ScrollView(.vertical) {
                     VStack(alignment: .leading, spacing: 15) {
 
-                        Text("Ingredients")
-                            .font(.title2.weight(.bold))
-                            .padding(.leading, 20)
-                            .padding(.top, 20)
+                        SectionTitle(text: "Ingredients")
 
                         HStack {
                             VStack(alignment: .leading, spacing: 5) {
                                 if let ingredients = details?.ingredients {
                                     ForEach(ingredients) { ingredient in
-                                        Text(ingredient.name.capitalized)
-                                            .font(.headline)
-                                            .foregroundColor(Color(red: 53/255, green: 53/255, blue: 53/255))
+                                        SectionBody(text: ingredient.name.capitalized)
                                     }
                                 }
                             }
@@ -43,27 +38,20 @@ struct DessertDetailView: View {
                             VStack(alignment: .trailing, spacing: 5) {
                                 if let measurements = details?.measurements {
                                     ForEach(measurements) { measurement in
-                                        Text(measurement.name)
-                                            .font(.headline)
-                                            .foregroundColor(Color(red: 53/255, green: 53/255, blue: 53/255))
+                                        SectionBody(text: measurement.name)
                                     }
                                 }
                             }
-                            .padding(.trailing, 20)
                         }
-                        .padding(.leading, 20)
 
-                        Text("Instructions")
-                            .font(.title2.weight(.bold))
-                            .padding(.leading, 20)
+                        SectionTitle(text: "Instructions")
 
-                        Text(details?.instructions ?? "")
-                            .font(.headline)
-                            .foregroundColor(Color(red: 53/255, green: 53/255, blue: 53/255))
-                            .padding(.leading, 20)
-                            .padding(.trailing, 20)
+                        SectionBody(text: details?.instructions ?? "")
                     }
                 }
+                .padding(.top, Margin.top.value)
+                .padding(.leading, Margin.leading.value)
+                .padding(.trailing, Margin.trailing.value)
             } else {
                 ProgressView()
                     .progressViewStyle(.circular)

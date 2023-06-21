@@ -26,20 +26,20 @@ struct DessertListView: View {
                                     HStack(alignment: .center) {
                                         Thumbnail(url: dessert.thumbnailImage ?? "")
 
-                                        Text(dessert.name ?? "")
-                                            .font(.title2.weight(.bold))
+                                        SectionTitle(text: dessert.name)
                                             .multilineTextAlignment(.leading)
-                                            .foregroundColor(.black)
+                                            // Adds space between image and Title
                                             .padding(.leading, 20)
                                     }
+                                    // Adds space on all sides between Rectangle and its children
                                     .padding()
                                 }
-                                .padding(.leading, 20)
-                                .padding(.trailing, 20)
                             }
                         }
                     }
-                    .padding(.top, 10)
+                    .padding(.top, Margin.top.value)
+                    .padding(.leading, Margin.leading.value)
+                    .padding(.trailing, Margin.trailing.value)
                 }
                 .navigationTitle("Desserts")
 
