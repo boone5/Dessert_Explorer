@@ -7,26 +7,27 @@
 
 import Foundation
 
-@MainActor
 class DessertViewModel: ObservableObject {
-    private let networkManager = NetworkManager()
+    private let networkManager: NetworkManager
 
     @Published var desserts: [Dessert]
     @Published var isLoaded: Bool
 
-    init(desserts: [Dessert], isLoaded: Bool = false) {
+    init(desserts: [Dessert], isLoaded: Bool = false, networkManager: NetworkManager = NetworkManager()) {
         self.desserts = desserts
         self.isLoaded = isLoaded
+        self.networkManager = networkManager
     }
 
     /// Make a network request to load an array of Dessert objects. Function handles errors respectively.
+    @MainActor
     public func loadDesserts() async {
         do {
             let data = try await networkManager.fetchEndpoint(.getAllDesserts)
 
-            try await createDessertList(from: data)
+            let list = try await createDessertList(from: data)
 
-            let sorted = self.sortAlphabetically(list: self.desserts)
+            let sorted = self.sortAlphabetically(list: list)
 
             self.desserts = sorted
             self.isLoaded = true
@@ -41,8 +42,10 @@ class DessertViewModel: ObservableObject {
         }
     }
 
-    private func createDessertList(from data: Data) async throws {
+    private func createDessertList(from data: Data) async throws -> [Dessert] {
         let jsonArray = try NetworkHelper.convertToJSON(from: data)
+
+        var list: [Dessert] = []
 
         for json in jsonArray {
             let id = json["idMeal"] as? String
@@ -55,8 +58,10 @@ class DessertViewModel: ObservableObject {
                 thumbnailImage: urlString
             )
 
-            desserts.append(dessert)
+            list.append(dessert)
         }
+
+        return list
     }
 
     /// Sorts our list of desserts by name.

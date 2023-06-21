@@ -9,15 +9,17 @@
 /* Begin PBXBuildFile section */
 		D5424EAE2A42BB4600D7C866 /* NetworkHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5424EAD2A42BB4600D7C866 /* NetworkHelperTests.swift */; };
 		D54779132A4159E0005A9F9F /* Measurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = D54779122A4159E0005A9F9F /* Measurement.swift */; };
+		D5868F032A433BC0008A6E95 /* Fetch_TakeHomeProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5868F012A433BC0008A6E95 /* Fetch_TakeHomeProjectUITests.swift */; };
+		D5868F042A433BC0008A6E95 /* Fetch_TakeHomeProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5868F022A433BC0008A6E95 /* Fetch_TakeHomeProjectUITestsLaunchTests.swift */; };
+		D5868F062A43412F008A6E95 /* MockNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5868F052A43412F008A6E95 /* MockNetworkManager.swift */; };
 		D5AE23652A3D5878002C34B1 /* Fetch_TakeHomeProjectApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AE23642A3D5878002C34B1 /* Fetch_TakeHomeProjectApp.swift */; };
 		D5AE23672A3D5878002C34B1 /* DessertListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AE23662A3D5878002C34B1 /* DessertListView.swift */; };
 		D5AE23692A3D5879002C34B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5AE23682A3D5879002C34B1 /* Assets.xcassets */; };
 		D5AE236C2A3D5879002C34B1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5AE236B2A3D5879002C34B1 /* Preview Assets.xcassets */; };
-		D5AE23802A3D5879002C34B1 /* Fetch_TakeHomeProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AE237F2A3D5879002C34B1 /* Fetch_TakeHomeProjectUITests.swift */; };
-		D5AE23822A3D5879002C34B1 /* Fetch_TakeHomeProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AE23812A3D5879002C34B1 /* Fetch_TakeHomeProjectUITestsLaunchTests.swift */; };
 		D5AE238F2A3D5B48002C34B1 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AE238E2A3D5B48002C34B1 /* NetworkManager.swift */; };
 		D5AE23912A3D6046002C34B1 /* DessertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5AE23902A3D6046002C34B1 /* DessertViewModel.swift */; };
 		D5BB378F2A4323C100747053 /* DessertDetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BB378E2A4323C100747053 /* DessertDetailViewModelTests.swift */; };
+		D5D03FE22A4338FC0037B665 /* DessertViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5D03FE12A4338FC0037B665 /* DessertViewModelTests.swift */; };
 		D5E7587F2A3E76E0008905B8 /* DessertDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E7587E2A3E76E0008905B8 /* DessertDetailView.swift */; };
 		D5E758832A3ED61F008905B8 /* DessertDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E758822A3ED61F008905B8 /* DessertDetailViewModel.swift */; };
 		D5E758852A3EDB9F008905B8 /* APIEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E758842A3EDB9F008905B8 /* APIEndpoint.swift */; };
@@ -51,6 +53,9 @@
 /* Begin PBXFileReference section */
 		D5424EAD2A42BB4600D7C866 /* NetworkHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelperTests.swift; sourceTree = "<group>"; };
 		D54779122A4159E0005A9F9F /* Measurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Measurement.swift; sourceTree = "<group>"; };
+		D5868F012A433BC0008A6E95 /* Fetch_TakeHomeProjectUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetch_TakeHomeProjectUITests.swift; sourceTree = "<group>"; };
+		D5868F022A433BC0008A6E95 /* Fetch_TakeHomeProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetch_TakeHomeProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		D5868F052A43412F008A6E95 /* MockNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkManager.swift; sourceTree = "<group>"; };
 		D5AE23612A3D5878002C34B1 /* Fetch_TakeHomeProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Fetch_TakeHomeProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5AE23642A3D5878002C34B1 /* Fetch_TakeHomeProjectApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetch_TakeHomeProjectApp.swift; sourceTree = "<group>"; };
 		D5AE23662A3D5878002C34B1 /* DessertListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertListView.swift; sourceTree = "<group>"; };
@@ -58,12 +63,11 @@
 		D5AE236B2A3D5879002C34B1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D5AE23712A3D5879002C34B1 /* Fetch_TakeHomeProjectTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Fetch_TakeHomeProjectTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5AE237B2A3D5879002C34B1 /* Fetch_TakeHomeProjectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Fetch_TakeHomeProjectUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		D5AE237F2A3D5879002C34B1 /* Fetch_TakeHomeProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetch_TakeHomeProjectUITests.swift; sourceTree = "<group>"; };
-		D5AE23812A3D5879002C34B1 /* Fetch_TakeHomeProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fetch_TakeHomeProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		D5AE238E2A3D5B48002C34B1 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		D5AE23902A3D6046002C34B1 /* DessertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertViewModel.swift; sourceTree = "<group>"; };
 		D5BB378E2A4323C100747053 /* DessertDetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertDetailViewModelTests.swift; sourceTree = "<group>"; };
 		D5BB37902A4323EF00747053 /* Fetch_TakeHomeProject.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fetch_TakeHomeProject.xctestplan; sourceTree = "<group>"; };
+		D5D03FE12A4338FC0037B665 /* DessertViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertViewModelTests.swift; sourceTree = "<group>"; };
 		D5E7587E2A3E76E0008905B8 /* DessertDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertDetailView.swift; sourceTree = "<group>"; };
 		D5E758822A3ED61F008905B8 /* DessertDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DessertDetailViewModel.swift; sourceTree = "<group>"; };
 		D5E758842A3EDB9F008905B8 /* APIEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIEndpoint.swift; sourceTree = "<group>"; };
@@ -102,6 +106,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D5868F072A434140008A6E95 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				D5868F052A43412F008A6E95 /* MockNetworkManager.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		D5AE23582A3D5878002C34B1 = {
 			isa = PBXGroup;
 			children = (
@@ -149,8 +161,10 @@
 			isa = PBXGroup;
 			children = (
 				D5BB378E2A4323C100747053 /* DessertDetailViewModelTests.swift */,
+				D5D03FE12A4338FC0037B665 /* DessertViewModelTests.swift */,
 				D5E760D82A42A6F30047C8C4 /* ServerTests.swift */,
 				D5424EAD2A42BB4600D7C866 /* NetworkHelperTests.swift */,
+				D5868F072A434140008A6E95 /* Mocks */,
 			);
 			path = Fetch_TakeHomeProjectTests;
 			sourceTree = "<group>";
@@ -158,8 +172,8 @@
 		D5AE237E2A3D5879002C34B1 /* Fetch_TakeHomeProjectUITests */ = {
 			isa = PBXGroup;
 			children = (
-				D5AE237F2A3D5879002C34B1 /* Fetch_TakeHomeProjectUITests.swift */,
-				D5AE23812A3D5879002C34B1 /* Fetch_TakeHomeProjectUITestsLaunchTests.swift */,
+				D5868F012A433BC0008A6E95 /* Fetch_TakeHomeProjectUITests.swift */,
+				D5868F022A433BC0008A6E95 /* Fetch_TakeHomeProjectUITestsLaunchTests.swift */,
 			);
 			path = Fetch_TakeHomeProjectUITests;
 			sourceTree = "<group>";
@@ -346,6 +360,7 @@
 					};
 					D5AE237A2A3D5879002C34B1 = {
 						CreatedOnToolsVersion = 14.3.1;
+						LastSwiftMigration = 1430;
 						TestTargetID = D5AE23602A3D5878002C34B1;
 					};
 				};
@@ -426,6 +441,8 @@
 				D5E760D92A42A6F30047C8C4 /* ServerTests.swift in Sources */,
 				D5424EAE2A42BB4600D7C866 /* NetworkHelperTests.swift in Sources */,
 				D5BB378F2A4323C100747053 /* DessertDetailViewModelTests.swift in Sources */,
+				D5D03FE22A4338FC0037B665 /* DessertViewModelTests.swift in Sources */,
+				D5868F062A43412F008A6E95 /* MockNetworkManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,8 +450,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5AE23802A3D5879002C34B1 /* Fetch_TakeHomeProjectUITests.swift in Sources */,
-				D5AE23822A3D5879002C34B1 /* Fetch_TakeHomeProjectUITestsLaunchTests.swift in Sources */,
+				D5868F032A433BC0008A6E95 /* Fetch_TakeHomeProjectUITests.swift in Sources */,
+				D5868F042A433BC0008A6E95 /* Fetch_TakeHomeProjectUITestsLaunchTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -672,6 +689,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 98G68BQFCS;
@@ -680,6 +698,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hunterboone.Fetch-TakeHomeProjectUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = Fetch_TakeHomeProject;
@@ -690,6 +709,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 98G68BQFCS;

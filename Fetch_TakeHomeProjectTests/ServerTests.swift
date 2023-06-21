@@ -39,7 +39,7 @@ class ServerTests: XCTestCase {
             XCTAssertNil(data)
         } catch {
             let apiError = try XCTUnwrap(error as? APIError)
-            XCTAssertEqual(apiError.description, "Invalid server response: \(error)")
+            XCTAssertEqual(apiError.description, "😡 Invalid server response: \(error)")
         }
     }
 }

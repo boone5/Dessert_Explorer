@@ -66,7 +66,7 @@ class NetworkHelperTests: XCTestCase {
 
         XCTAssertThrowsError(try NetworkHelper.convertToJSON(from: invalidData), "Expected decoding error!") { error in
             if let error = error as? APIError {
-                XCTAssertEqual(error.description, "Invalid server response: \(error)")
+                XCTAssertEqual(error.description, "😡 Invalid server response: \(error)")
             }
         }
     }
@@ -89,7 +89,7 @@ class NetworkHelperTests: XCTestCase {
 
         XCTAssertThrowsError(try NetworkHelper.convertToJSON(from: invalidData), "Expected invalid format error!") { error in
             if let error = error as? APIError {
-                XCTAssertEqual(error.description, "Invalid server response: \(error)")
+                XCTAssertEqual(error.description, "😡 Invalid server response: \(error)")
             }
         }
     }
@@ -104,7 +104,7 @@ class NetworkHelperTests: XCTestCase {
 
         XCTAssertThrowsError(try NetworkHelper.convertToJSON(from: invalidData), "Expected invalid format error!") { error in
             if let error = error as? APIError {
-                XCTAssertEqual(error.description, "Invalid server response: \(error)")
+                XCTAssertEqual(error.description, "😡 Invalid server response: \(error)")
             }
         }
     }

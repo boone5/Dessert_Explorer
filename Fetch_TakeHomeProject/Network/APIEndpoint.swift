@@ -33,11 +33,11 @@ enum APIError: Error {
     var description: String {
         switch self {
         case .networkUnavailable:
-            return "No internet connection."
+            return "😡 No internet connection."
         case .unknownError(let error):
             return "😡 Something went wrong: \(error)"
         case .decodingError(_), .encodingError, .invalidFormat, .badURL:
-            return "Invalid server response: \(self)"
+            return "😡 Invalid server response: \(self)"
         }
     }
 }

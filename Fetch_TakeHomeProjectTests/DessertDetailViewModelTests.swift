@@ -13,7 +13,7 @@ final class DessertDetailViewModelTests: XCTestCase {
     private var viewModel: DessertDetailViewModel!
     private var mockNetworkManager: MockNetworkManager!
 
-    @MainActor override func setUp() {
+    override func setUp() {
         self.mockNetworkManager = MockNetworkManager()
         let dessert = Dessert()
         self.viewModel = DessertDetailViewModel(details: dessert, networkManager: mockNetworkManager)
@@ -100,16 +100,5 @@ final class DessertDetailViewModelTests: XCTestCase {
         XCTAssertTrue(mockNetworkManager.fetchEndpointWasCalled)
         XCTAssertEqual(viewModel.details, Dessert())
         XCTAssertTrue(viewModel.isLoaded)
-    }
-}
-
-class MockNetworkManager: NetworkManager {
-    var fetchEndpointWasCalled = false
-    var data: Data = Data()
-
-    override func fetchEndpoint(_ endpoint: APIEndpoint) async throws -> Data {
-        fetchEndpointWasCalled = true
-
-        return self.data
     }
 }
