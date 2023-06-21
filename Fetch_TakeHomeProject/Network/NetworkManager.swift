@@ -32,23 +32,3 @@ class NetworkManager {
         }
     }
 }
-
-enum APIError: Error {
-    case networkUnavailable
-    case invalidFormat
-    case unknownError(Error)
-    case decodingError(Error)
-    case encodingError
-    case badURL
-
-    var description: String {
-        switch self {
-        case .networkUnavailable:
-            return "No internet connection."
-        case .unknownError(_):
-            return "Something went wrong"
-        case .decodingError(_), .encodingError, .invalidFormat, .badURL:
-            return "Invalid server response"
-        }
-    }
-}

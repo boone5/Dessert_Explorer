@@ -24,7 +24,7 @@ struct DessertListView: View {
                                         .shadow(radius: 2, y: 2)
 
                                     HStack(alignment: .center) {
-                                        CachedImage(url: dessert.thumbnailImage ?? "")
+                                        Thumbnail(url: dessert.thumbnailImage ?? "")
 
                                         Text(dessert.name ?? "")
                                             .font(.title2.weight(.bold))

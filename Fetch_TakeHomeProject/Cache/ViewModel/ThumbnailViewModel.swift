@@ -1,5 +1,5 @@
 //
-//  CachedImageManager.swift
+//  ThumbnailViewModel.swift
 //  Fetch_TakeHomeProject
 //
 //  Created by Boone on 6/20/23.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-final class CachedImageManager: ObservableObject {
+final class ThumbnailViewModel: ObservableObject {
 
     @Published private(set) var data: Data?
 
-    private let imageRetriever = ImageManager()
+    private let imageManager = ImageManager()
 
     @MainActor
     func load(_ imgURL: String?, cache: ImageCache = .shared) async {
@@ -27,7 +27,7 @@ final class CachedImageManager: ObservableObject {
         }
 
         do {
-            self.data = try await imageRetriever.fetch(from: imgURL)
+            self.data = try await imageManager.fetch(from: imgURL)
 
             if let dataToCache = data as? NSData {
                 cache.set(object: dataToCache, forKey: url as NSString)
