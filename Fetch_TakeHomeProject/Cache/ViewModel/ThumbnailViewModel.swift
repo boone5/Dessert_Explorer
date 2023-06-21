@@ -8,33 +8,24 @@
 import Foundation
 
 final class ThumbnailViewModel: ObservableObject {
+    private let networkManager = NetworkManager()
 
     @Published private(set) var data: Data?
 
-    private let imageManager = ImageManager()
-
     @MainActor
-    func load(_ imgURL: String?, cache: ImageCache = .shared) async {
-        guard let url = imgURL else {
-            // MARK: ERROR
-            return
-        }
-
-        if let imageData = cache.object(forKey: url as NSString) {
-            self.data = imageData
-            print("Fetching Image from Cache: \(url)")
-            return
-        }
-
+    func load(_ imgURL: String, cache: ImageCache = .shared) async {
         do {
-            self.data = try await imageManager.fetch(from: imgURL)
+            let data = try await networkManager.fetchEndpoint(.getImage(imgURL))
 
-            if let dataToCache = data as? NSData {
-                cache.set(object: dataToCache, forKey: url as NSString)
-                print("Storing Image in Cache: \(url)")
+            self.data = data
+
+        } catch(let error) {
+            if let error = error as? APIError {
+                // MARK: LOG
+                // This is an area where I could log an event with the error we receive back.
+                print(error.description)
             }
-        } catch {
-            print("😡 " + error.localizedDescription)
+            print(APIError.unknownError(error).description)
         }
     }
 }

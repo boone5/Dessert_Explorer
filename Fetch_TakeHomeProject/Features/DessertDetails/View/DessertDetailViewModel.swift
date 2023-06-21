@@ -9,6 +9,8 @@ import SwiftUI
 
 @MainActor
 class DessertDetailViewModel: ObservableObject {
+    private let networkManager = NetworkManager()
+
     @Published var details: Dessert
     @Published var isLoaded: Bool
 
@@ -16,34 +18,58 @@ class DessertDetailViewModel: ObservableObject {
         self.details = details
         self.isLoaded = isLoaded
     }
-
-    public func createDessert(by id: String?) async {
+    
+    public func loadDessert(_ id: String) async {
         do {
-            let jsonArray = try await NetworkHelper.fetchEndpoint(.getDessertByID(id))
+            let data = try await networkManager.fetchEndpoint(.getDessertByID(id))
 
-            // The API returns an array of length 1 with our specified Dessert object. We need this line to access the first element.
-            guard let json = jsonArray.first else {
-                throw APIError.invalidFormat
+            try await createDessert(with: data)
+
+            self.isLoaded = true
+
+        } catch(let error) {
+            if let error = error as? APIError {
+                // MARK: LOG
+                // This is an area where I could log an event with the error we receive back.
+                print(error.description)
             }
-
-            let id = json["idMeal"] as? String
-            let name = json["strMeal"] as? String
-            let instructions = json["strInstructions"] as? String
-
-            let formatted = NetworkHelper.formatJSON(jsonString: instructions)
-
-            var dessert = Dessert(
-                id: id,
-                name: name,
-                instructions: formatted
-            )
-
-            NetworkHelper.addProperties(to: &dessert, with: json)
-
-            self.details = dessert
-            isLoaded = true
-        } catch (let error) {
-            print("😡 \(error)")
+            print(APIError.unknownError(error).description)
         }
+    }
+
+    private func createDessert(with data: Data) async throws {
+        let jsonArray = try NetworkHelper.convertToJSON(from: data)
+
+        // The API returns an array of length 1 with our specified Dessert object. We need this line to access the first element.
+        guard let json = jsonArray.first else {
+            throw APIError.invalidFormat
+        }
+
+        let id = json["idMeal"] as? String
+        let name = json["strMeal"] as? String
+        let instructions = json["strInstructions"] as? String
+        
+        let formatted = formatInstructions(jsonString: instructions)
+
+        var dessert = Dessert(
+            id: id,
+            name: name,
+            instructions: formatted
+        )
+
+        NetworkHelper.addProperties(to: &dessert, with: json)
+
+        self.details = dessert
+    }
+
+    /// The API returns `instructions` with newline characters that aren't consistent across each dessert. This function removes them altogether to make for a more consistent user expereince.
+    ///
+    /// Without removing the newline characters, one dessert object might return `instructions` with paragraph spacing while another doesn't.
+    private func formatInstructions(jsonString: String?) -> String? {
+        guard let json = jsonString else { return nil }
+
+        let replaced = json.replacingOccurrences(of: "\r\n", with: "")
+
+        return replaced
     }
 }

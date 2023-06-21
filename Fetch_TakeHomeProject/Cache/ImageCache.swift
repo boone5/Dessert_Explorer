@@ -8,19 +8,18 @@
 import Foundation
 
 class ImageCache {
-    // We want to use a String since the key will be the URL. The value will be the image object stored as Data
+    // The key will be a String representation of the URL. The value will be the image object stored as Data.
     typealias CacheType = NSCache<NSString, NSData>
 
-    // We want this to be a singleton because SwiftUI views are re-invalidated each time the state changes. We don't want the Cache to be reset when the view is re-rendered.
+    // MARK: Singleton
+    // SwiftUI views are re-rendered so we don't want the cache to reset.
     static let shared = ImageCache()
 
-    // private so no one can create it
+    // This makes it so we don't instantiate it outside the scope of this file.
     private init() {}
 
-    // won't be initialized until we actually create the cache
     private lazy var cache: CacheType = {
         let cache = CacheType()
-        // can have 100 items within the Cache
         cache.countLimit = 100
         // 52,428,800 bytes -> 50MB
         cache.totalCostLimit = 50 * 1024 * 1024
@@ -28,7 +27,7 @@ class ImageCache {
     }()
 
     // Get from Cache
-    func object(forKey key: NSString) -> Data? {
+    func getObject(forKey key: NSString) -> Data? {
         cache.object(forKey: key) as? Data
     }
 

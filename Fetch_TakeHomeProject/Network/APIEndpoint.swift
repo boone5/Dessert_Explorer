@@ -8,6 +8,7 @@
 enum APIEndpoint {
     case getAllDesserts
     case getDessertByID(_ id: String?)
+    case getImage(_ url: String)
 
     var path: String {
         switch self {
@@ -15,6 +16,8 @@ enum APIEndpoint {
             return "https://themealdb.com/api/json/v1/1/filter.php?c=Dessert"
         case .getDessertByID(let id):
             return "https://themealdb.com/api/json/v1/1/lookup.php?i=\(id ?? "")"
+        case .getImage(let url):
+            return url
         }
     }
 }
@@ -31,10 +34,10 @@ enum APIError: Error {
         switch self {
         case .networkUnavailable:
             return "No internet connection."
-        case .unknownError(_):
-            return "Something went wrong"
+        case .unknownError(let error):
+            return "😡 Something went wrong: \(error)"
         case .decodingError(_), .encodingError, .invalidFormat, .badURL:
-            return "Invalid server response"
+            return "Invalid server response: \(self)"
         }
     }
 }

@@ -10,8 +10,8 @@ import SwiftUI
 struct DessertDetailView: View {
     @StateObject var dessertDetailViewModel = DessertDetailViewModel(details: Dessert())
 
-    public var id: String?
-    public var navigationTitle: String?
+    public var id: String
+    public var navigationTitle: String
     public var details: Dessert? {
         dessertDetailViewModel.details
     }
@@ -70,9 +70,9 @@ struct DessertDetailView: View {
                     .frame(alignment: .center)
             }
         }
-        .navigationTitle(navigationTitle ?? "Dessert Title Not Available.")
+        .navigationTitle(navigationTitle)
         .task {
-            await dessertDetailViewModel.createDessert(by: self.id)
+            await dessertDetailViewModel.loadDessert(self.id)
         }
     }
 }
@@ -80,7 +80,7 @@ struct DessertDetailView: View {
 #if DEBUG
 struct DessertDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DessertDetailView(dessertDetailViewModel: DessertDetailViewModel(details: Dessert()))
+        DessertDetailView(dessertDetailViewModel: DessertDetailViewModel(details: Dessert()), id: "", navigationTitle: "")
     }
 }
 #endif

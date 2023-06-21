@@ -9,7 +9,7 @@ import SwiftUI
 
 @MainActor
 class DessertViewModel: ObservableObject {
-    private let imageRetriever = ImageManager()
+    private let networkManager = NetworkManager()
 
     @Published var desserts: [Dessert]
     @Published var isLoaded: Bool
@@ -19,32 +19,43 @@ class DessertViewModel: ObservableObject {
         self.isLoaded = isLoaded
     }
 
-    public func createDessertList() async {
+    public func loadDesserts() async {
         do {
-            let jsonArray = try await NetworkHelper.fetchEndpoint(.getAllDesserts)
+            let data = try await networkManager.fetchEndpoint(.getAllDesserts)
 
-            for json in jsonArray {
-                let id = json["idMeal"] as? String
-                let name = json["strMeal"] as? String
-                let urlString = json["strMealThumb"] as? String
+            try await createDessertList(with: data)
 
-                // Load the image from endpoint in "strMealThumb".
-                // - Implementing a cache wasn't as trivial as I thought it would be
-//                let image = try await imageRetriever.fetchImage(from: urlString)
+            let sorted = self.sortAlphabetically(list: self.desserts)
+            self.desserts = sorted
 
-                let dessert = Dessert(
-                    id: id,
-                    name: name,
-                    thumbnailImage: urlString
-                )
+            self.isLoaded = true
 
-                desserts.append(dessert)
+        } catch(let error) {
+            if let error = error as? APIError {
+                // MARK: LOG
+                // This is an area where I could log an event with the error we receive back.
+                print(error.description)
             }
-        } catch (let error) {
-            print("😡 \(error)")
+            print(APIError.unknownError(error).description)
         }
+    }
 
-        self.isLoaded = true
+    private func createDessertList(with data: Data) async throws {
+        let jsonArray = try NetworkHelper.convertToJSON(from: data)
+
+        for json in jsonArray {
+            let id = json["idMeal"] as? String
+            let name = json["strMeal"] as? String
+            let urlString = json["strMealThumb"] as? String
+
+            let dessert = Dessert(
+                id: id,
+                name: name,
+                thumbnailImage: urlString
+            )
+
+            desserts.append(dessert)
+        }
     }
 
     private func sortAlphabetically(list: [Dessert]) -> [Dessert] {

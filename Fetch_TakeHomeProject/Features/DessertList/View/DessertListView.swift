@@ -16,7 +16,7 @@ struct DessertListView: View {
                 ScrollView(.vertical) {
                     VStack(alignment: .leading, spacing: 15) {
                         ForEach(dessertViewModel.desserts) { dessert in
-                            NavigationLink(destination: DessertDetailView(id: dessert.id, navigationTitle: dessert.name)) {
+                            NavigationLink(destination: DessertDetailView(id: dessert.id ?? "", navigationTitle: dessert.name ?? "")) {
                                 ZStack(alignment: .leading) {
                                     Rectangle()
                                         .foregroundColor(.white)
@@ -50,7 +50,7 @@ struct DessertListView: View {
             }
         }
         .task {
-            await dessertViewModel.createDessertList()
+            await dessertViewModel.loadDesserts()
         }
     }
 }
