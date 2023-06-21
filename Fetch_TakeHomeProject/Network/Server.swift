@@ -8,11 +8,13 @@
 import Foundation
 
 class Server {
+    // MARK: Singleton
     static let shared = Server()
 
+    // Keeps the instantiation explicit to this file.
     private init() { }
 
-    // MARK: MAKE API REQUEST
+    /// Makes a network request to the endpoint. Handles errors respectively.
     func makeRequest(endpoint: APIEndpoint) async throws -> Data {
         guard let url = URL(string: endpoint.path) else {
             // MARK: ERROR

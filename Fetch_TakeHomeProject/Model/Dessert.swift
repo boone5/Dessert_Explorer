@@ -5,8 +5,6 @@
 //  Created by Boone on 6/18/23.
 //
 
-import UIKit
-
 struct Dessert: Identifiable {
     let id: String?
     let name: String?

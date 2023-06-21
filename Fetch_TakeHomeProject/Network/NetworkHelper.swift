@@ -8,15 +8,15 @@
 import Foundation
 
 struct NetworkHelper {
+    /// Convert our Data into an array of JSON objects that we can decode.
     public static func convertToJSON(from data: Data) throws -> [[String: Any]] {
         do {
             let jsonObject = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
 
-            guard let responseJSON = jsonObject else {
-                throw APIError.invalidFormat
-            }
-
-            guard let dessertJSON = responseJSON["meals"] as? [[String: Any]] else {
+            guard
+                let responseJSON = jsonObject,
+                let dessertJSON = responseJSON["meals"] as? [[String: Any]]
+            else {
                 throw APIError.invalidFormat
             }
 
@@ -33,7 +33,7 @@ struct NetworkHelper {
     /// - "strIngredientX" : "sugar"
     /// - "strMeasureX" : "1 tbps"
     ///
-    /// Where "X" is an integer from 1-20.
+    /// Where "X" is an integer from 1 - N. If the API design needs to increase "N" then we're future proofing our self here.
     public static func addProperties(to dessert: inout Dessert, with json: [String: Any]) {
         var ingredientIndex = 1
         var measurementIndex = 1

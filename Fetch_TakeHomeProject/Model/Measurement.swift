@@ -5,7 +5,7 @@
 //  Created by Boone on 6/19/23.
 //
 
-import Foundation
+import Foundation.NSUUID
 
 struct Measurement: Identifiable {
     let id = UUID()

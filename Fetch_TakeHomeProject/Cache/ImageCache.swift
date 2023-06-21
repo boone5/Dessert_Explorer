@@ -15,7 +15,7 @@ class ImageCache {
     // SwiftUI views are re-rendered so we don't want the cache to reset.
     static let shared = ImageCache()
 
-    // This makes it so we don't instantiate it outside the scope of this file.
+    // Keeps the instantiation explicit to this file.
     private init() {}
 
     private lazy var cache: CacheType = {

@@ -5,7 +5,7 @@
 //  Created by Boone on 6/18/23.
 //
 
-import SwiftUI
+import Foundation
 
 @MainActor
 class DessertDetailViewModel: ObservableObject {
@@ -18,26 +18,27 @@ class DessertDetailViewModel: ObservableObject {
         self.details = details
         self.isLoaded = isLoaded
     }
-    
+
+    /// Make a network request to load a Dessert object. Function handles errors respectively.
     public func loadDessert(_ id: String) async {
         do {
             let data = try await networkManager.fetchEndpoint(.getDessertByID(id))
 
-            try await createDessert(with: data)
+            try await createDessert(from: data)
 
             self.isLoaded = true
 
         } catch(let error) {
             if let error = error as? APIError {
                 // MARK: LOG
-                // This is an area where I could log an event with the error we receive back.
+                // This is an area where I could log an event with an error we receive back.
                 print(error.description)
             }
             print(APIError.unknownError(error).description)
         }
     }
 
-    private func createDessert(with data: Data) async throws {
+    private func createDessert(from data: Data) async throws {
         let jsonArray = try NetworkHelper.convertToJSON(from: data)
 
         // The API returns an array of length 1 with our specified Dessert object. We need this line to access the first element.
@@ -60,7 +61,7 @@ class DessertDetailViewModel: ObservableObject {
         self.details = dessert
     }
 
-    /// The API returns `instructions` with newline characters that aren't consistent across each dessert. This function removes them altogether to make for a more consistent user expereince.
+    /// The API returns `instructions` with newline characters that aren't consistent across each dessert object. This function removes them altogether to make for a more consistent user expereince.
     ///
     /// Without removing the newline characters, one dessert object might return `instructions` with paragraph spacing while another doesn't.
     private func formatInstructions(jsonString: String?) -> String? {

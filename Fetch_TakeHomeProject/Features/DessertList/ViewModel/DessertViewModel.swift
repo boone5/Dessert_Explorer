@@ -5,7 +5,7 @@
 //  Created by Boone on 6/16/23.
 //
 
-import SwiftUI
+import Foundation
 
 @MainActor
 class DessertViewModel: ObservableObject {
@@ -19,28 +19,29 @@ class DessertViewModel: ObservableObject {
         self.isLoaded = isLoaded
     }
 
+    /// Make a network request to load an array of Dessert objects. Function handles errors respectively.
     public func loadDesserts() async {
         do {
             let data = try await networkManager.fetchEndpoint(.getAllDesserts)
 
-            try await createDessertList(with: data)
+            try await createDessertList(from: data)
 
             let sorted = self.sortAlphabetically(list: self.desserts)
-            self.desserts = sorted
 
+            self.desserts = sorted
             self.isLoaded = true
 
         } catch(let error) {
+            // MARK: LOG
+            // This is an area where I could log an event with an error we receive back.
             if let error = error as? APIError {
-                // MARK: LOG
-                // This is an area where I could log an event with the error we receive back.
                 print(error.description)
             }
             print(APIError.unknownError(error).description)
         }
     }
 
-    private func createDessertList(with data: Data) async throws {
+    private func createDessertList(from data: Data) async throws {
         let jsonArray = try NetworkHelper.convertToJSON(from: data)
 
         for json in jsonArray {
@@ -58,6 +59,7 @@ class DessertViewModel: ObservableObject {
         }
     }
 
+    /// Sorts our list of desserts by name.
     private func sortAlphabetically(list: [Dessert]) -> [Dessert] {
         guard list.count > 1 else { return list }
 

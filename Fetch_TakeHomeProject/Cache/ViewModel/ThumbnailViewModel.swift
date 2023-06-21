@@ -12,6 +12,7 @@ final class ThumbnailViewModel: ObservableObject {
 
     @Published private(set) var data: Data?
 
+    /// Make a network request OR load an Image from the ImageCache. Function handles errors respectively.
     @MainActor
     func load(_ imgURL: String, cache: ImageCache = .shared) async {
         do {

@@ -4,7 +4,7 @@
 //
 //  Created by Boone on 6/18/23.
 //
-import Foundation
+import Foundation.NSUUID
 
 struct Ingredient: Identifiable {
     let id = UUID()
