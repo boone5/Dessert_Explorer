@@ -28,8 +28,10 @@ struct Thumbnail: View {
     }
 }
 
+#if DEBUG
 struct CachedImage_Previews: PreviewProvider {
     static var previews: some View {
         Thumbnail(url: "https://www.themealdb.com/images/media/meals/ryppsv1511815505.jpg")
     }
 }
+#endif

@@ -55,8 +55,10 @@ struct DessertListView: View {
     }
 }
 
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DessertListView(dessertViewModel: DessertViewModel(desserts: []))
-//    }
-//}
+#if DEBUG
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        DessertListView(dessertViewModel: DessertViewModel(desserts: []))
+    }
+}
+#endif
