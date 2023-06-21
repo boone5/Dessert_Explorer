@@ -9,9 +9,16 @@ import SwiftUI
 
 @main
 struct Fetch_TakeHomeProjectApp: App {
+    @StateObject var dessertViewModel = DessertViewModel(desserts: [])
+
+    init() {
+        // This adds resizing so NavigationBar title's fit on screen
+        UILabel.appearance(whenContainedInInstancesOf: [UINavigationBar.self]).adjustsFontSizeToFitWidth = true
+    }
+
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            DessertListView(dessertViewModel: dessertViewModel)
         }
     }
 }
