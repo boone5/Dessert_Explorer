@@ -15,9 +15,18 @@ final class ThumbnailViewModel: ObservableObject {
     @MainActor
     func load(_ imgURL: String, cache: ImageCache = .shared) async {
         do {
-            let data = try await networkManager.fetchEndpoint(.getImage(imgURL))
+            if let imageData = cache.getObject(forKey: imgURL as NSString) {
+                self.data = imageData
+                print("⬇️ Fetching Image from Cache: \(imgURL)")
+                return
+            }
 
-            self.data = data
+            self.data = try await networkManager.fetchEndpoint(.getImage(imgURL))
+
+            if let dataToCache = data as? NSData {
+                cache.set(object: dataToCache, forKey: imgURL as NSString)
+                print("⬆️ Storing Image in Cache: \(imgURL)")
+            }
 
         } catch(let error) {
             if let error = error as? APIError {

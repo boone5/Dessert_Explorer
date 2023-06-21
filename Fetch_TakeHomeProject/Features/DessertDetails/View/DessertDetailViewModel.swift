@@ -45,14 +45,12 @@ class DessertDetailViewModel: ObservableObject {
             throw APIError.invalidFormat
         }
 
-        let id = json["idMeal"] as? String
         let name = json["strMeal"] as? String
         let instructions = json["strInstructions"] as? String
         
         let formatted = formatInstructions(jsonString: instructions)
 
         var dessert = Dessert(
-            id: id,
             name: name,
             instructions: formatted
         )
