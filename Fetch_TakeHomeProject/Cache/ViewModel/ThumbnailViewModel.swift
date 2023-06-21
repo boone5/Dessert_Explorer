@@ -8,7 +8,11 @@
 import Foundation
 
 final class ThumbnailViewModel: ObservableObject {
-    private let networkManager = NetworkManager()
+    private let networkManager: NetworkManager
+
+    init(networkManager: NetworkManager) {
+        self.networkManager = networkManager
+    }
 
     @Published private(set) var data: Data?
 

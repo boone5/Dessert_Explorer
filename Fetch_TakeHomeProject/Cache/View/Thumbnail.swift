@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct Thumbnail: View {
-
-    @StateObject private var thumbnailViewModel = ThumbnailViewModel()
+    @StateObject private var thumbnailViewModel = ThumbnailViewModel(networkManager: NetworkManager())
+    
     let url: String
 
     var body: some View {

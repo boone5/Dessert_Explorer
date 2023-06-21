@@ -7,16 +7,11 @@
 
 import Foundation
 
-class Server {
-    // MARK: Singleton
-    static let shared = Server()
-
-    // Keeps the instantiation explicit to this file.
-    private init() { }
+struct Server {
 
     /// Makes a network request to the endpoint. Handles errors respectively.
-    func makeRequest(endpoint: APIEndpoint) async throws -> Data {
-        guard let url = URL(string: endpoint.path) else {
+    func makeRequest(urlStr: String) async throws -> Data {
+        guard let url = URL(string: urlStr) else {
             // MARK: ERROR
             throw APIError.badURL
         }
@@ -27,7 +22,7 @@ class Server {
             return data
 
         // MARK: ERROR
-        } catch(let error) {
+        } catch {
             if let urlError = error as? URLError, urlError.code == .notConnectedToInternet {
                 throw APIError.networkUnavailable
             } else {

@@ -27,6 +27,7 @@
 		D5E760C92A41E8D60047C8C4 /* ThumbnailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E760C82A41E8D60047C8C4 /* ThumbnailViewModel.swift */; };
 		D5E760CB2A41E9030047C8C4 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E760CA2A41E9030047C8C4 /* Thumbnail.swift */; };
 		D5E760D72A4284FF0047C8C4 /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E760D62A4284FF0047C8C4 /* Server.swift */; };
+		D5E760D92A42A6F30047C8C4 /* ServerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5E760D82A42A6F30047C8C4 /* ServerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +71,7 @@
 		D5E760C82A41E8D60047C8C4 /* ThumbnailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThumbnailViewModel.swift; sourceTree = "<group>"; };
 		D5E760CA2A41E9030047C8C4 /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		D5E760D62A4284FF0047C8C4 /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		D5E760D82A42A6F30047C8C4 /* ServerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				D5AE23752A3D5879002C34B1 /* Fetch_TakeHomeProjectTests.swift */,
+				D5E760D82A42A6F30047C8C4 /* ServerTests.swift */,
 			);
 			path = Fetch_TakeHomeProjectTests;
 			sourceTree = "<group>";
@@ -416,6 +419,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5AE23762A3D5879002C34B1 /* Fetch_TakeHomeProjectTests.swift in Sources */,
+				D5E760D92A42A6F30047C8C4 /* ServerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

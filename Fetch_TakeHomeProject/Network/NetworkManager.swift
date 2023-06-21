@@ -8,8 +8,10 @@
 import Foundation.NSData
 
 struct NetworkManager {
+    private let server = Server()
+
     /// Notifies the Server to make a request using the endpoint.
     func fetchEndpoint(_ endpoint: APIEndpoint) async throws -> Data {
-        return try await Server.shared.makeRequest(endpoint: endpoint)
+        return try await server.makeRequest(urlStr: endpoint.path)
     }
 }
