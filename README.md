@@ -1,4 +1,4 @@
-# Dessert_Explorer
+# Dessert Explorer
 
 ## Overview
 I approached this with a minimal design in mind and took some insipration from designs seen on Dribbble.
